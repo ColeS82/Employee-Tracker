@@ -67,7 +67,7 @@ const prompt = () => {
           break;
 
         case "Exit and quit": console.log("Good Bye!");
-          break;
+        process.exit()
 
         default: console.log("There was nothing selected");
 
