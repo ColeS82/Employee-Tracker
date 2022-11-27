@@ -15,7 +15,7 @@ const db = mysql.createConnection(
   },
   console.log(`Connected to the Employee_Tracker_db database.`)
 );
-
+// initiates program after it loads.
 db.connect(function (err) {
   if (err) return console.log(err);
   prompt();
@@ -44,7 +44,7 @@ const prompt = () => {
     .then((answers) => {
       const { choices } = answers;
       switch (choices) {
-        case "View all departments":
+        case "View all departments": ;
           break;
 
 
