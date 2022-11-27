@@ -1,13 +1,7 @@
-const express = require('express');
-// Import and require mysql2
 const mysql = require('mysql2');
+const inquirer = require('inquirer');
+require('console.table');
 
-const PORT = process.env.PORT || 3001;
-const app = express();
-
-// Express middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
 
 // Connect to database
 const db = mysql.createConnection(
@@ -16,10 +10,10 @@ const db = mysql.createConnection(
     // MySQL Username
     user: 'root',
     // TODO: Add MySQL Password
-    password: '',
-    database: 'books_db'
+    password: 'Az770088!',
+    database: 'Employee_Tracker_db'
   },
-  console.log(`Connected to the books_db database.`)
+  console.log(`Connected to the Employee_Tracker_db database.`)
 );
 
 // Query database using COUNT() and GROUP BY
