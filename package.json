@@ -1,0 +1,20 @@
+{
+  "name": "employee-tracker",
+  "version": "1.0.0",
+  "description": "A Command line application that will provide a tabled representation user with prompts to answer so that it can generate a structure by answering the prompts.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ColeS82/Employee-Tracker.git"
+  },
+  "author": "Cole Sexson",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/ColeS82/Employee-Tracker/issues"
+  },
+  "homepage": "https://github.com/ColeS82/Employee-Tracker#readme"
+}
