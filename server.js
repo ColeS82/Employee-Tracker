@@ -44,17 +44,59 @@ const prompt = () => {
     .then((answers) => {
       const { choices } = answers;
       switch (choices) {
-        case "View all departments": ;
+        case "View all departments":
+          db.query('SELECT * FROM department', function (err, results) {
+            if (err) {
+              console.log(err);
+            }
+            console.table(results);
+            prompt();
+          }
+          );
           break;
 
 
-        case "View all roles": ;
+        case "View all roles":
+          const roles = `SELECT roles.id, roles.title, department.name AS department FROM roles LEFT JOIN department ON roles.department_id = department.id`;
+
+          db.query(roles, (err, rows) => {
+            console.table(rows);
+            prompt();
+          })
           break;
 
-        case "View all employees": ;
+        case "View all employees":
+          let employees = `SELECT employee.id, employee.first_name, employee.last_name, roles.title, department.name AS department, roles.salary, CONCAT(mgr.first_name, mgr.last_name) AS manager FROM employee LEFT JOIN roles ON employee.role_id = roles.id LEFT JOIN department ON roles.department_id = department.id LEFT JOIN employee mgr ON employee.manager_id = mgr.id`;
+
+          db.query(employees, (err, rows) => {
+            if (err) return console.log(err);
+            console.table(rows);
+            prompt();
+          });
           break;
 
-        case "Add a department": ;
+        case "Add a department":
+          inquirer.prompt([
+            {
+              type: 'input',
+              name: 'department',
+              message: 'What department do you want to add?',
+            }
+          ])
+            .then(answer => {
+              const mysql = `INSERT INTO department (name) VALUES (?)`;
+              db.query(mysql, answer.department, (err, results) => {
+                if (err) return console.log(err);
+                console.log('Added ' + answer.department + " to departments");
+                const mysql = `SELECT department.id AS id, department.name AS department FROM department`;
+
+                db.query(mysql, (err, rows) => {
+                  if (err) return console.log(err);
+                  console.table(rows);
+                  prompt();
+                });
+              });
+            });
           break;
 
         case "Add a role": ;
@@ -67,7 +109,7 @@ const prompt = () => {
           break;
 
         case "Exit and quit": console.log("Good Bye!");
-        process.exit()
+          process.exit()
 
         default: console.log("There was nothing selected");
 
