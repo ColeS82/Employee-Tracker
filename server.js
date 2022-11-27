@@ -9,7 +9,7 @@ const db = mysql.createConnection(
     host: 'localhost',
     // MySQL Username
     user: 'root',
-    // TODO: Add MySQL Password
+    // MySQL Password
     password: 'Az770088!',
     database: 'Employee_Tracker_db'
   },
@@ -18,5 +18,65 @@ const db = mysql.createConnection(
 
 db.connect(function (err) {
   if (err) return console.log(err);
-  InquirerPrompt();
+  prompt();
 })
+
+
+const prompt = () => {
+  inquirer.prompt([
+    {
+      type: 'list',
+      name: 'choices',
+      message: 'Please select an option',
+      choices: [
+        'View all departments',
+        'View all roles',
+        'View all employees',
+        'Add a department',
+        'Add a role',
+        'Add an employee',
+        'Update employee role',
+        'Exit and quit'
+      ]
+    }
+  ])
+
+    .then((answers) => {
+      const { choices } = answers;
+      switch (choices) {
+        case "View all departments":
+          break;
+
+
+        case "View all roles": ;
+          break;
+
+        case "View all employees": ;
+          break;
+
+        case "Add a department": ;
+          break;
+
+        case "Add a role": ;
+          break;
+
+        case "Add an employee": ;
+          break;
+
+        case "Update employee role": ;
+          break;
+
+        case "Exit and quit": console.log("Good Bye!");
+          break;
+
+        default: console.log("There was nothing selected");
+
+      }
+    })
+
+}
+
+
+
+
+
